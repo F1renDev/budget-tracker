@@ -1,0 +1,22 @@
+.Button {
+  box-sizing: border-box;
+  border: 0 solid;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  overflow: visible;
+  text-transform: none;
+  cursor: pointer;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: rgb(42, 217, 194);
+  background-color: transparent;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  border-width: 2px;
+  border-color: rgb(42, 217, 194);
+  margin-bottom: 10px;
+}

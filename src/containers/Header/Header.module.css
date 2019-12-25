@@ -1,0 +1,9 @@
+.Header{
+  display: flex;
+  justify-content: space-around;
+}
+
+.Signup{
+  display: flex;
+  justify-content: space-evenly;
+}
