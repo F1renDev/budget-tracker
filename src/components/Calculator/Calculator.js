@@ -1,19 +1,19 @@
 import React from "react";
 import styles from "./Calculator.module.css";
 import Button from "../../UI/Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 class Calculator extends React.Component {
   render() {
+    const element = <FontAwesomeIcon  size="2x" backgroundColor="transparent" icon={faTrashAlt} />;
     return (
       <div className={styles.Calculator}>
         <div>
           <p>Тут должно отображаться:</p>
           <ol>
             <li>Блок с ежемесячными расходами: интернет, квартплата</li>
-            <li>Блок с единичными тратами</li>
-            <li>
-              Сделать возможность добавить доход (халтура, подарили и т.д.)
-            </li>
+            
             <li>
               Сделать возможность выбиать конкретно каждый месяц для внесения в
               него инфы. Все сразу не показывать по нажатию на плюс открывать
@@ -43,7 +43,7 @@ class Calculator extends React.Component {
             placeholder="Your montly income"
           />
         </div>
-        <Button>Add income</Button>
+        <Button>+ Add income</Button>
         <div>
           <h3>Monthly expenses</h3>
         </div>
@@ -55,7 +55,7 @@ class Calculator extends React.Component {
             <input placeholder="сумма" />
           </div>
           <div>
-            <button>Delete</button>
+            <button>{element}</button>
           </div>
         </div>
         <div className={styles.InputRow}>
@@ -66,7 +66,7 @@ class Calculator extends React.Component {
             <input placeholder="сумма" />
           </div>
           <div>
-            <button>Delete</button>
+            <button>{element}</button>
           </div>
         </div>
         <div className={styles.InputRow}>
@@ -77,7 +77,7 @@ class Calculator extends React.Component {
             <input placeholder="сумма" />
           </div>
           <div>
-            <button>Delete</button>
+            <button>{element}</button>
           </div>
         </div>
         <div className={styles.InputRow}>
@@ -88,7 +88,7 @@ class Calculator extends React.Component {
             <input placeholder="сумма" />
           </div>
           <div>
-            <button>Delete</button>
+            <button>{element}</button>
           </div>
         </div>
         <div className={styles.InputRow}>
@@ -99,10 +99,10 @@ class Calculator extends React.Component {
             <input placeholder="сумма" />
           </div>
           <div>
-            <button>Delete</button>
+            <button>{element}</button>
           </div>
         </div>
-        <Button>Add expense</Button>
+        <Button>+ Add expense</Button>
       </div>
     );
   }

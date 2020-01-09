@@ -3,21 +3,29 @@
   width: 600px;
 }
 
-.InputRow{
+.InputRow {
   display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  align-items: center;
 }
 
-.SteadyIncome{
+.SteadyIncome {
   margin-bottom: 15px;
 }
 
 input {
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-    line-height: 1.25;
-    -webkit-appearance: none;
-    border-radius: 0.25rem;
-    padding: 0.75rem;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  line-height: 1.25;
+  -webkit-appearance: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+}
+
+button {
+  background: transparent;
+  border: 0 solid;
+  color: rgb(42, 217, 194);
 }

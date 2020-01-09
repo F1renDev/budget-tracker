@@ -9,9 +9,9 @@ const header = () => {
         <div>
           Если не авторизирован, видна информация только за текущий месяц
         </div><br/>
-        <div>Sign-up to save</div>
+        <div>Sign in to save</div>
         <div>
-          <button>Sign-up</button>
+          <button>Sign in</button>
         </div>
       </div>
     </div>

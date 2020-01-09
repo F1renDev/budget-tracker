@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Summary.module.css";
+import { connect } from "react-redux";
 
 import PieChart from "../../containers/PieChart/PieChart";
 
@@ -10,6 +11,7 @@ class Summary extends React.Component {
         <div>
           <p>Тут должно отображаться:</p>
           <ol>
+            <li>График показывает соотношение заработанного к потраченному</li>
             <li>
               Считаем доход по месяцам. Т.е. если сейчас март - то общая сумма
               дохода - только 3 месяца
@@ -22,12 +24,28 @@ class Summary extends React.Component {
             <li>Обязательно сделать графу "Сэкономлено\Отложено"</li>
           </ol>
         </div>
-        <div style={{ paddingBottom: "15px" }}>
+        <div className={styles.ChartArea}>
+          <p>
+            Этот график показывает соотношение потраченного к заработанному за
+            конкретный месяц
+          </p><br/>
+          <PieChart />
+          <p>
+            Этот график показывает соотношение потраченного к заработанному за
+            текущий год
+          </p><br/>
           <PieChart />
         </div>
+        <div>{this.props.totalAmount}</div>
       </div>
     );
   }
 }
 
-export default Summary;
+const mapStateToProps = state => {
+  return {
+    totalAmount: state.totalAmount
+  };
+};
+
+export default connect(mapStateToProps)(Summary);

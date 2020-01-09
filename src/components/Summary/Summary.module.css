@@ -1,4 +1,9 @@
-.Summary{
+.Summary {
   border: 1px solid black;
   width: 600px;
+}
+
+.ChartArea {
+  padding-bottom: 15px;
+  display: flex;
 }
