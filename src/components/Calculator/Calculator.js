@@ -6,14 +6,20 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 class Calculator extends React.Component {
   render() {
-    const element = <FontAwesomeIcon  size="2x" backgroundColor="transparent" icon={faTrashAlt} />;
+    const element = (
+      <FontAwesomeIcon
+        size="lg"
+        backgroundColor="transparent"
+        icon={faTrashAlt}
+      />
+    );
     return (
       <div className={styles.Calculator}>
         <div>
           <p>Тут должно отображаться:</p>
           <ol>
             <li>Блок с ежемесячными расходами: интернет, квартплата</li>
-            
+
             <li>
               Сделать возможность выбиать конкретно каждый месяц для внесения в
               него инфы. Все сразу не показывать по нажатию на плюс открывать
@@ -31,17 +37,7 @@ class Calculator extends React.Component {
           <h3>Monthly income</h3>
         </div>
         <div className={styles.SteadyIncome}>
-          <input
-            style={{
-              backgroundColor: "rgb(255, 255, 255)",
-              boxShadow:
-                "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
-              lineheight: "1.25",
-              borderRadius: "0.25rem",
-              padding: "0.75rem"
-            }}
-            placeholder="Your montly income"
-          />
+          <input placeholder="Your montly income" />
         </div>
         <Button>+ Add income</Button>
         <div>
