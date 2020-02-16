@@ -5,7 +5,7 @@ import Calculator from "./components/Calculator/Calculator";
 import Summary from "./components/Summary/Summary";
 import Footer from "./containers/Footer/Footer";
 
-function App() {
+const App = () => {
   return (
     <div className={styles.App}>
       <Header />
@@ -18,6 +18,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

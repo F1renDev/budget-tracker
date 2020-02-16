@@ -8,7 +8,8 @@ const header = () => {
       <div className={styles.Signup}>
         <div>
           Если не авторизирован, видна информация только за текущий месяц
-        </div><br/>
+        </div>
+        <br />
         <div>Sign in to save</div>
         <div>
           <button>Sign in</button>
