@@ -1,34 +1,24 @@
 import React from "react";
 import ReactMinimalPieChart from "react-minimal-pie-chart";
 
-const PieChart = () => {
+const PieChart = (props) => {
   return (
     <ReactMinimalPieChart
-      animate={true}
+      animate={false}
       animationDuration={500}
       animationEasing="ease-out"
+      data={props.data}
       cx={50}
       cy={50}
-      data={[
-        {
-          color: "#29d9c2",
-          title: "One",
-          value: 50
-        },
-        {
-          color: "#00a2a7",
-          title: "Two",
-          value: 15
-        }
-      ]}
-      label={true}
-      labelStyle={{
-        fill: "white",
-        fontSize: "12px"
-      }}
+      label
       labelPosition={50}
+      labelStyle={{
+        fill: "#121212",
+        fontFamily: "sans-serif",
+        fontSize: "5px"
+      }}
       lengthAngle={360}
-      lineWidth={15}
+      lineWidth={100}
       onClick={undefined}
       onMouseOut={undefined}
       onMouseOver={undefined}
@@ -38,7 +28,7 @@ const PieChart = () => {
       startAngle={0}
       viewBoxSize={[100, 100]}
       style={{
-        height: "165px"
+        height: "365px"
       }}
     />
   );

@@ -1,10 +1,27 @@
 import React from "react";
 import styles from "./Summary.module.css";
 import { connect } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 
 import PieChart from "../../containers/PieChart/PieChart";
 
 const Summary = props => {
+  const monthlyIncome = useSelector(state => state.monthlyIncome, shallowEqual);
+  const totalYearlyIncome = useSelector(
+    state => state.totalYearlyIncome,
+    shallowEqual
+  );
+  const totalYearlySpend = useSelector(
+    state => state.totalYearlySpend,
+    shallowEqual
+  );
+  const apartmentCost = useSelector(state => state.apartmentCost, shallowEqual);
+  const internetCost = useSelector(state => state.internetCost, shallowEqual);
+  const travelCost = useSelector(state => state.travelCost, shallowEqual);
+  const foodCost = useSelector(state => state.foodCost, shallowEqual);
+  const otherCost = useSelector(state => state.otherCost, shallowEqual);
+  const monthlyTotalSpend =
+    apartmentCost + internetCost + travelCost + foodCost + otherCost;
   return (
     <div className={styles.Summary}>
       <div>
@@ -23,13 +40,39 @@ const Summary = props => {
           конкретный месяц
         </p>
         <br />
-        <PieChart />
+        <PieChart
+          data={[
+            {
+              color: "#29d9c2",
+              title: "Earned",
+              value: +monthlyIncome
+            },
+            {
+              color: "#00a2a7",
+              title: "Spent",
+              value: +monthlyTotalSpend
+            }
+          ]}
+        />
         <p>
           Этот график показывает соотношение потраченного к заработанному за
           текущий год
         </p>
         <br />
-        <PieChart />
+        <PieChart
+          data={[
+            {
+              color: "#29d9c2",
+              title: "Earned",
+              value: totalYearlyIncome
+            },
+            {
+              color: "#00a2a7",
+              title: "Spent",
+              value: totalYearlySpend
+            }
+          ]}
+        />
       </div>
       <div>{props.totalAmount}</div>
     </div>
