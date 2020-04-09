@@ -15,6 +15,34 @@ const Calculator = props => {
   const otherCost = useSelector(state => state.otherCost, shallowEqual);
   const dispatch = useDispatch();
 
+  const expenses = [
+    {
+      expense: "Квартплата",
+      cost: apartmentCost,
+      type: actionTypes.HANDLE_APARTMENT_COST_CHANGE
+    },
+    {
+      expense: "Интернет",
+      cost: internetCost,
+      type: actionTypes.HANDLE_INTERNET_COST_CHANGE
+    },
+    {
+      expense: "Проезд",
+      cost: travelCost,
+      type: actionTypes.HANDLE_TRAVEL_COST_CHANGE
+    },
+    {
+      expense: "Еда",
+      cost: foodCost,
+      type: actionTypes.HANDLE_FOOD_COST_CHANGE
+    },
+    {
+      expense: "Другие траты",
+      cost: otherCost,
+      type: actionTypes.HANDLE_MONTHLY_OTHER_SPEND_CHANGE
+    }
+  ];
+
   const handleIncomeInput = event => {
     return {
       type: actionTypes.HANDLE_MONTHLY_INPUT_CHANGE,
@@ -22,9 +50,10 @@ const Calculator = props => {
     };
   };
 
-  const handleAddExpense = event => {
+  const handleExistingExpenseInput = (event, type) => {
+    console.log(type);
     return {
-      type: actionTypes.HANDLE_MONTHLY_SPEND_CHANGE,
+      type: type,
       payload: event.target.value
     };
   };
@@ -55,88 +84,37 @@ const Calculator = props => {
       </div>
       <div className={styles.SteadyIncome}>
         <input
-          value={+monthlyIncome}
+          type="number"
+          value={monthlyIncome}
           onChange={event => dispatch(handleIncomeInput(event))}
         />
       </div>
       <div>
         <h3>Monthly expenses</h3>
       </div>
-      <div className={styles.InputRow}>
-        <div>
-          <input value="Квартплата" onChange={() => {}} />
-        </div>
-        <div>
-          <input
-            placeholder="Сумма"
-            value={+apartmentCost}
-            onChange={event => dispatch(handleAddExpense(event))}
-          />
-        </div>
-        <div>
-          <button>{element}</button>
-        </div>
-      </div>
-      <div className={styles.InputRow}>
-        <div>
-          <input value="Интернет" onChange={() => {}} />
-        </div>
-        <div>
-          <input
-            placeholder="Сумма"
-            value={+internetCost}
-            onChange={event => dispatch(handleAddExpense(event))}
-          />
-        </div>
-        <div>
-          <button>{element}</button>
-        </div>
-      </div>
-      <div className={styles.InputRow}>
-        <div>
-          <input value="Проезд" onChange={() => {}} />
-        </div>
-        <div>
-          <input
-            placeholder="Сумма"
-            value={+travelCost}
-            onChange={event => dispatch(handleAddExpense(event))}
-          />
-        </div>
-        <div>
-          <button>{element}</button>
-        </div>
-      </div>
-      <div className={styles.InputRow}>
-        <div>
-          <input value="Еда" onChange={() => {}} />
-        </div>
-        <div>
-          <input
-            placeholder="Сумма"
-            value={+foodCost}
-            onChange={event => dispatch(handleAddExpense(event))}
-          />
-        </div>
-        <div>
-          <button>{element}</button>
-        </div>
-      </div>
-      <div className={styles.InputRow}>
-        <div>
-          <input value="Другие траты" onChange={() => {}} />
-        </div>
-        <div>
-          <input
-            placeholder="Сумма"
-            value={+otherCost}
-            onChange={event => dispatch(handleAddExpense(event))}
-          />
-        </div>
-        <div>
-          <button>{element}</button>
-        </div>
-      </div>
+      {expenses.map(item => {
+        return (
+          <React.Fragment key={item.expense}>
+            <div className={styles.InputRow}>
+              <div>
+                <input value={item.expense} onChange={() => {}} />
+              </div>
+              <div>
+                <input
+                  placeholder="Сумма"
+                  value={item.cost}
+                  onChange={event => {
+                    dispatch(handleExistingExpenseInput(event, item.type));
+                  }}
+                />
+              </div>
+              <div>
+                <button>{element}</button>
+              </div>
+            </div>
+          </React.Fragment>
+        );
+      })}
       <Button>+ Add expense</Button>
     </div>
   );

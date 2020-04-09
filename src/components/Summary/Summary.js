@@ -15,13 +15,11 @@ const Summary = props => {
     state => state.totalYearlySpend,
     shallowEqual
   );
-  const apartmentCost = useSelector(state => state.apartmentCost, shallowEqual);
-  const internetCost = useSelector(state => state.internetCost, shallowEqual);
-  const travelCost = useSelector(state => state.travelCost, shallowEqual);
-  const foodCost = useSelector(state => state.foodCost, shallowEqual);
-  const otherCost = useSelector(state => state.otherCost, shallowEqual);
-  const monthlyTotalSpend =
-    apartmentCost + internetCost + travelCost + foodCost + otherCost;
+
+  const monthlyTotalSpend = useSelector(
+    state => state.monthlyTotalSpend,
+    shallowEqual
+  );
   return (
     <div className={styles.Summary}>
       <div>
