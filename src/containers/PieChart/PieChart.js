@@ -26,9 +26,9 @@ const PieChart = (props) => {
       radius={50}
       rounded={false}
       startAngle={0}
-      viewBoxSize={[100, 100]}
+      viewBoxSize={[70, 70]}
       style={{
-        height: "365px"
+        height: "285px"
       }}
     />
   );

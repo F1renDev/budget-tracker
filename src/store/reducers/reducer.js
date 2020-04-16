@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  monthlyIncome: 30000,
+  monthlyIncome: 56000,
   apartmentCost: 10000,
   internetCost: 700,
   travelCost: 2500,

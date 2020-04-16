@@ -1,6 +1,10 @@
 .Calculator {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 600px;
+}
+
+.MonthlyHeader {
+  color: white;
 }
 
 .InputRow {
