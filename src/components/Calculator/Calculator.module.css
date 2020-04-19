@@ -1,6 +1,8 @@
 .Calculator {
   /* border: 1px solid black; */
-  width: 600px;
+  margin: 0 30px;
+  box-sizing: border-box;
+  text-align: left;
 }
 
 .MonthlyHeader {
@@ -12,10 +14,37 @@
   justify-content: space-evenly;
   margin-bottom: 1rem;
   align-items: center;
+  width: 100%;
+}
+
+.Expense input {
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.ExpenseSum{
+  margin-left: 1.2rem;
+}
+
+.ExpenseSum input {
+  width: 73%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.ExpenseDelete{
+  margin-left: -2.3rem;
+}
+
+.ExpenseDelete button {
+  width: 8%;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .SteadyIncome {
-  margin-bottom: 15px;
+  margin-bottom: 3rem;
 }
 
 input {

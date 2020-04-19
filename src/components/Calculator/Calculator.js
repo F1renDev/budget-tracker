@@ -67,6 +67,12 @@ const Calculator = (props) => {
   const element = <FontAwesomeIcon size="lg" icon={faTrashAlt} />;
   return (
     <div className={styles.Calculator}>
+      <h2>Keep track of your budget!</h2>
+      <p>
+        Calculate how much money
+        <br /> is spent on mandatory payments
+        <br /> and find a way to manage them.
+      </p>
       <div>
         <h3 className={styles.MonthlyHeader}>Monthly income</h3>
       </div>
@@ -84,10 +90,10 @@ const Calculator = (props) => {
         return (
           <React.Fragment key={item.expense}>
             <div className={styles.InputRow}>
-              <div>
+              <div className={styles.Expense}>
                 <input value={item.expense} onChange={() => {}} />
               </div>
-              <div>
+              <div className={styles.ExpenseSum}>
                 <input
                   placeholder="Сумма"
                   value={item.cost}
@@ -97,7 +103,7 @@ const Calculator = (props) => {
                   }}
                 />
               </div>
-              <div>
+              <div className={styles.ExpenseDelete}>
                 <button>{element}</button>
               </div>
             </div>

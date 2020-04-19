@@ -1,10 +1,12 @@
 .App {
+  width: 100%;
   color: white;
 }
 
 .Main {
   text-align: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  width: 100%;
 }
