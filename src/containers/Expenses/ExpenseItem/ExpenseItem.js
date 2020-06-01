@@ -27,7 +27,7 @@ const ExpenseItem = (props) => {
   const expenseCostChangeHandler = (e, id) => {
     return {
       type: actionTypes.HANDLE_CHANGE_SINGLE_EXPENSE_COST,
-      value: e.target.value,
+      value: +e.target.value,
       id: id,
     };
   };
