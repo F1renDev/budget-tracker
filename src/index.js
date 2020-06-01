@@ -2,20 +2,26 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
+import monthlyIncomeCalculator from "./store/reducers/monthlyIncomeCalculator";
+import monthlyExpensesCalculator from "./store/reducers/monthlyExpensesCalculator";
+import * as serviceWorker from "./serviceWorker";
 
-import reducer from "./store/reducers/reducer";
-
-// getting the redux devtool to work
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware()));
+const rootReducer = combineReducers({
+  monthlyIncCalc: monthlyIncomeCalculator,
+  monthlyExpCalc: monthlyExpensesCalculator,
+});
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware()));
 
 const app = (
   <Provider store={store}>
-    <App />
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </Provider>
 );
 

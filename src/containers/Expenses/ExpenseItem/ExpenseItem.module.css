@@ -1,0 +1,50 @@
+.ExpenseItem {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.ExpenseName {
+  width: 58.3333%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.ExpenseName input {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  line-height: 1.25;
+  -webkit-appearance: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  color: rgb(110, 125, 149);
+  font-size: 17px;
+}
+
+.ExpenseCost {
+  width: 33.3333%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.ExpenseCost input {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  line-height: 1.25;
+  -webkit-appearance: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  text-align: right;
+  color: rgb(110, 125, 149);
+  font-size: 17px;
+}
+
+.ExpenseDelete {
+  width: 8.33333%;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}

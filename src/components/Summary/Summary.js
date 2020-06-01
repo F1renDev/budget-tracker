@@ -1,88 +1,46 @@
-import React, { useState } from "react";
-import styles from "./Summary.module.css";
+import React from "react";
 import { useSelector, shallowEqual } from "react-redux";
 
-import PieChart from "../../containers/PieChart/PieChart";
+import DetailedExpenseInfo from "../../containers/Expenses/DetailedExpenseInfo/DetailedExpenseInfo";
+import Chart from "../../containers/Chart/Chart";
+import styles from "./Summary.module.css";
 
-const Summary = (props) => {
-  const [showFullReportBody, setShowFullReportBody] = useState(false);
-
+const Summary = () => {
+  const data = useSelector((state) => state.monthlyExpCalc, shallowEqual);
   const monthlyIncome = useSelector(
-    (state) => state.monthlyIncome,
+    (state) => state.monthlyIncCalc.initialMonthlyInput,
     shallowEqual
   );
 
-  const monthlyTotalSpend = useSelector(
-    (state) => state.monthlyTotalSpend,
-    shallowEqual
-  );
-  // const yearlyTotalIncome = useSelector(
-  //   (state) => state.totalYearlyIncome,
-  //   shallowEqual
-  // );
+  const detailedInfo = data.map((item) => {
+    const percent = ((item.cost / monthlyIncome) * 100).toFixed();
+    return (
+      <DetailedExpenseInfo
+        key={item.id}
+        expensePercent={percent}
+        widthPercent={percent}
+        expenseSum={item.cost}
+        expenseName={item.name}
+        bgColor={item.bgColor}
+      />
+    );
+  });
 
-  // const yearlyTotalSpend = useSelector(
-  //   (state) => state.totalYearlySpend,
-  //   shallowEqual
-  // );
+  let totalMoneyLeft = 0;
+
+  data.forEach((item) => {
+    totalMoneyLeft += item.cost;
+  });
 
   return (
     <div className={styles.Summary}>
-      <div className={styles.Section1}>
-        <div>
-          <p>
-            This graph shows <br /> unspent / earnd <br />
-            money ratio
-          </p>
-        </div>
-        <div className={styles.ChartArea}>
-          <PieChart
-            data={[
-              {
-                color: "#29d9c2",
-                title: "Earned",
-                value: +monthlyIncome,
-              },
-              {
-                color: "#00a2a7",
-                title: "Left",
-                value: +monthlyIncome - +monthlyTotalSpend,
-              },
-            ]}
-          />
-        </div>
-        <h3 className={styles.SummaryBreakdown}>
-          Great! Here's your income / spend breakdown:
-        </h3>
-        <div className={styles.Report}>
-          <div className={styles.ReportHeader}>
-            <div className={styles.PercentOfExpences}>
-              % of mandatory expences
-            </div>
-            <div className={styles.SumOfExpences}>
-              Sum of mandatory expences
-            </div>
-          </div>
-          <div
-            className={styles.ReportBody}
-            onClick={() => setShowFullReportBody(!showFullReportBody)}
-          >
-            <div>{((monthlyTotalSpend / monthlyIncome) * 100).toFixed()}%</div>
-            <div>
-              <div>{(monthlyTotalSpend / 4).toFixed()} / week</div>
-              {showFullReportBody ? (
-                <span>
-                  {monthlyTotalSpend.toFixed()} / month
-                  <br />
-                  {(monthlyTotalSpend * 12).toFixed()} / year
-                </span>
-              ) : null}
-            </div>
-          </div>
-        </div>
+      <div className={styles.ChartArea}>
+        <Chart />
       </div>
-      <h3>What now?</h3>
-      <p>It's high time you took control over your spendings!</p>
+      <div className={styles.DetailedInfoArea}>{detailedInfo}</div>
+      <div className={styles.LeftoverMoney}>
+        Left unspent: {monthlyIncome - totalMoneyLeft} ₽
+      </div>
     </div>
   );
 };

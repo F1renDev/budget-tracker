@@ -4,6 +4,7 @@ import styles from "./Footer.module.css";
 const footer = () => {
   return (
     <div className={styles.Footer}>
+      <div></div>
       <a
         target="_blank"
         rel="noopener noreferrer"

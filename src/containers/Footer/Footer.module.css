@@ -1,6 +1,15 @@
 .Footer {
   text-align: center;
+  margin-top: auto;
+  margin-bottom: 2rem;
 }
+
+.Footer div {
+  height: 1px;
+  display: block;
+  background-color: white;
+}
+
 .Footer a {
   text-decoration: none;
   color: white;

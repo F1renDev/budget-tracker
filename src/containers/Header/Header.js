@@ -1,18 +1,13 @@
 import React from "react";
 
 import styles from "./Header.module.css";
-import Logo from "../Logo/Logo";
-import Button from '../../UI/Button/Button'
 
 const header = () => {
   return (
     <div className={styles.Header}>
-      <Logo />
-      <div className={styles.Signup}>
-        <div>
-          <Button>Sign in</Button>
-        </div>
-      </div>
+      <div>Logo</div>
+      {/* Кнопка будет показывать Логин/Регистрация в зависимости от состояния */}
+      <div className={styles.SignButton}>Sign in</div>
     </div>
   );
 };
