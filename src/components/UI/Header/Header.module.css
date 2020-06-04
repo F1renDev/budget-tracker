@@ -1,10 +1,27 @@
 .Header {
   display: flex;
   justify-content: space-between;
-  margin: 10px 20px;
+  margin: 30px 20px;
   align-items: center;
   color: white;
   margin-bottom: 3rem;
+}
+
+.Header a {
+  text-decoration: none;
+  color: black;
+}
+
+.BtnSection {
+  display: flex;
+}
+
+.BtnSection div {
+  margin: 0 0.20rem;
+}
+
+.BtnSection div:nth-child(2) {
+  margin-right: -25px;
 }
 
 .SignButton {
@@ -22,7 +39,6 @@
   cursor: pointer;
   z-index: 0;
 }
-
 
 @media (min-width: 1024px) {
   .Header {

@@ -1,0 +1,19 @@
+.Button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: rgb(42, 217, 194);
+  color: rgb(4, 29, 89);
+  display: block;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  border-width: 2px;
+  border-color: transparent;
+  cursor: pointer;
+  z-index: 0;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 18px;
+  text-align: center;
+}

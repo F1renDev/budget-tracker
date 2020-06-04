@@ -1,0 +1,67 @@
+.Login {
+  display: block;
+  height: 100%;
+  margin-top: 25vh;
+}
+
+.Login form {
+  width: 100%;
+  display: block;
+}
+.Login input {
+  display: block;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  line-height: 1.25;
+  -webkit-appearance: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+  color: black;
+}
+
+input[type="submit"] {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: rgb(42, 217, 194);
+  color: rgb(4, 29, 89);
+  display: block;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  border-width: 2px;
+  border-color: transparent;
+  cursor: pointer;
+  z-index: 0;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 18px;
+  text-align: center;
+  -webkit-appearance: none;
+}
+
+p::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+p {
+  color: white;
+  margin-bottom: 0.7rem;
+}
+
+.AfterSignup {
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 22px;
+}
+
+@media (min-width: 1024px) {
+  .Login {
+    margin-top: 15vh;
+  }
+}

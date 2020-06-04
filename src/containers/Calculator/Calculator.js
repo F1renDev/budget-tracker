@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Calculator.module.css";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
 
-import ExpenseItem from "../../containers/Expenses/ExpenseItem/ExpenseItem";
+import ExpenseItem from "../../components/Expenses/ExpenseItem/ExpenseItem";
 import * as actionTypes from "../../store/actions";
 
 const Calculator = () => {
@@ -31,7 +31,7 @@ const Calculator = () => {
   const handleMonthlyInput = (e) => {
     return {
       type: actionTypes.HANDLE_MONTHLY_INPUT_CHANGE,
-      payload: e.target.value,
+      payload: +e.target.value,
     };
   };
 
@@ -46,13 +46,13 @@ const Calculator = () => {
       </li>
     );
   });
-
   return (
     <div className={styles.Calculator}>
       <h3 className={styles.MonthlyHeader}>Monthly Income</h3>
       <div className={styles.MonthlyInput}>
         <input
-          type="text"
+          inputMode="decimal"
+          type="number"
           value={initialMonthlyInput}
           onChange={(event) => dispatch(handleMonthlyInput(event))}
         />
@@ -68,7 +68,7 @@ const Calculator = () => {
           disabled={data.length >= 20}
         >
           {data.length >= 20
-            ? "Get the Pro version to add more"
+            ? "Upgrade to Pro version to add more"
             : "Add Expense"}
         </button>
       </div>

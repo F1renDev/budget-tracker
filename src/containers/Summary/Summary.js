@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, shallowEqual } from "react-redux";
 
-import DetailedExpenseInfo from "../../containers/Expenses/DetailedExpenseInfo/DetailedExpenseInfo";
-import Chart from "../../containers/Chart/Chart";
+import DetailedExpenseInfo from "../../components/Expenses/DetailedExpenseInfo/DetailedExpenseInfo";
+import Chart from "../../components/Chart/Chart";
 import styles from "./Summary.module.css";
 
 const Summary = () => {
@@ -13,7 +13,7 @@ const Summary = () => {
   );
 
   const detailedInfo = data.map((item) => {
-    const percent = ((item.cost / monthlyIncome) * 100).toFixed();
+    const percent = ((item.cost / monthlyIncome) * 100).toFixed(1);
     return (
       <DetailedExpenseInfo
         key={item.id}
@@ -32,6 +32,11 @@ const Summary = () => {
     totalMoneyLeft += item.cost;
   });
 
+  //Formatting the output numbers
+  const numberFormat = new Intl.NumberFormat("en-IN");
+
+  
+
   return (
     <div className={styles.Summary}>
       <div className={styles.ChartArea}>
@@ -39,7 +44,7 @@ const Summary = () => {
       </div>
       <div className={styles.DetailedInfoArea}>{detailedInfo}</div>
       <div className={styles.LeftoverMoney}>
-        Left unspent: {monthlyIncome - totalMoneyLeft} ₽
+        Balance: {numberFormat.format(monthlyIncome - totalMoneyLeft)} ₽
       </div>
     </div>
   );

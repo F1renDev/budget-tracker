@@ -28,7 +28,7 @@ const initialState = [
   {
     id: uuidv4(),
     name: "Apartment",
-    cost: 5000,
+    cost: 15000,
     bgColor: bgColorsArray.shift(),
   },
   {

@@ -1,6 +1,15 @@
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .Calculator {
   box-sizing: border-box;
-  width: 45%;
+  width: 50%;
 }
 
 .MonthlyHeader {

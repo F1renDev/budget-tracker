@@ -4,7 +4,7 @@
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   color: rgb(110, 125, 149);
   border-radius: 0.5rem;
-  width: 45%;
+  width: 40%;
   min-width: 375px;
 }
 
@@ -14,12 +14,16 @@
 
 .LeftoverMoney {
   text-align: center;
-  font-size: 1.5rem
+  font-size: 1.5rem;
 }
 
 @media (max-width: 1024px) {
   .Summary {
     width: 100%;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .LeftoverMoney {
+    margin-bottom: 1.5rem;
   }
 }

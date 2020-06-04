@@ -56,7 +56,8 @@ const ExpenseItem = (props) => {
       </div>
       <div className={styles.ExpenseCost}>
         <input
-          type="text"
+          inputMode="decimal"
+          type="number"
           value={expense.cost}
           onChange={(event) =>
             dispatch(expenseCostChangeHandler(event, props.id))

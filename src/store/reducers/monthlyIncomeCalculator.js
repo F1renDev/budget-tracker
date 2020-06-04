@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions'
 
 const initialState = {
-  initialMonthlyInput: 40000,
+  initialMonthlyInput: 50000,
 };
 
 const reducer = (state = initialState, action) => {
