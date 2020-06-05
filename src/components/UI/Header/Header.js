@@ -1,21 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, shallowEqual } from "react-redux";
+import axios from "axios";
 
 import styles from "./Header.module.css";
 
-const Header = (props) => {
-  const isAuth = useSelector((state) => state.auth.isAuth, shallowEqual);
-  const SignupSaveBtn = !isAuth ? (
-    <Link to="/signup" >
+const Header = () => {
+  const auth = useSelector((state) => state.auth, shallowEqual);
+  const data = useSelector((state) => state.monthlyExpCalc, shallowEqual);
+
+  let sendData = data.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      cost: item.cost,
+      bgColor: item.bgColor,
+    };
+  });
+
+  const sendData2 = {
+    [auth.userId]: { expenses: sendData, userId: auth.userId },
+  };
+
+  const send = () => {
+    axios
+      .put(
+        "https://budget-tracker-app-66952.firebaseio.com/" +
+          auth.userId +
+          ".json?auth=" +
+          auth.token,
+        sendData2
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const SignupSaveBtn = !auth.isAuth ? (
+    <Link to="/signup">
       <div className={styles.SignButton}>Register</div>
     </Link>
   ) : (
     <Link to="/">
-      <div className={styles.SignButton}>Save</div>
+      <div onClick={send} className={styles.SignButton}>
+        Save
+      </div>
     </Link>
   );
-  const LogInLogOutBtn = !isAuth ? (
+  const LogInLogOutBtn = !auth.isAuth ? (
     <Link to="/login">
       <div className={styles.SignButton}>Log in</div>
     </Link>

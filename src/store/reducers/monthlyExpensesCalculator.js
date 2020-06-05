@@ -59,6 +59,9 @@ const initialState = [
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    //Getting prepopulated data for existing user
+    case actionTypes.HANDLE_SET_EXPENSES_ITEMS:
+      return [...action.expenseItems];
     case actionTypes.HANDLE_DELETE_EXPENSE_ITEM:
       const newData = state.filter((item) => {
         bgColorsArray.push(item.bgColor);

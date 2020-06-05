@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Calculator.module.css";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 import ExpenseItem from "../../components/Expenses/ExpenseItem/ExpenseItem";
 import * as actionTypes from "../../store/actions";
@@ -13,7 +14,47 @@ const Calculator = () => {
 
   const data = useSelector((state) => state.monthlyExpCalc, shallowEqual);
 
+  const authData = useSelector((state) => state.auth, shallowEqual);
+
   const dispatch = useDispatch();
+
+  const queryParams = `?auth=${authData.token}`;
+  const fetchedData = [];
+
+  useEffect(() => {
+    if (authData.isAuth && !authData.loadedData) {
+      axios
+        .get(
+          "https://budget-tracker-app-66952.firebaseio.com/" +
+            authData.userId +
+            "/" +
+            authData.userId +
+            ".json" +
+            queryParams
+        )
+        .then((response) => {
+          for (let key in response.data) {
+            fetchedData.push(response.data[key]);
+          }
+          dispatch({
+            type: actionTypes.HANDLE_SET_EXPENSES_ITEMS,
+            expenseItems: fetchedData[0],
+          });
+          dispatch({
+            type: actionTypes.HANDLE_LOADED_STATE_CHANGE,
+            loadedData: true,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [
+    authData.isAuth,
+    authData.loadedData,
+    authData.userId,
+    dispatch,
+    // fetchedData,
+    queryParams,
+  ]);
 
   const deleteBtnHandler = (id) => {
     return {
@@ -46,6 +87,7 @@ const Calculator = () => {
       </li>
     );
   });
+
   return (
     <div className={styles.Calculator}>
       <h3 className={styles.MonthlyHeader}>Monthly Income</h3>

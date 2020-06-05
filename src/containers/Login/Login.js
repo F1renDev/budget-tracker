@@ -29,11 +29,25 @@ const Login = (props) => {
     axios
       .post(url, credentials)
       .then((response) => {
-        dispatch({ type: actionTypes.HANDLE_USER_LOGIN });
+        const expirationDate = new Date(
+          new Date().getTime() + response.data.expiresIn * 1000
+        );
+        localStorage.setItem("token", response.data.idToken);
+        localStorage.setItem("expirationDate", expirationDate);
+        localStorage.setItem("userId", response.data.localId);
+        dispatch({
+          type: actionTypes.HANDLE_USER_LOGIN,
+          idToken: response.data.idToken,
+          userId: response.data.localId,
+        });
         dispatch({
           type: actionTypes.HANDLE_ERROR_STATUS_CHANGE,
           errorMsg: null,
         });
+        //Logging out after the token is expired
+        setTimeout(() => {
+          dispatch({ type: actionTypes.HANDLE_USER_LOGOUT });
+        }, response.data.expiresIn * 1000);
         props.history.push("/");
       })
       .catch((err) =>

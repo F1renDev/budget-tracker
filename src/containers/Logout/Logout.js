@@ -11,6 +11,10 @@ const Logout = (props) => {
     props.history.push("/");
   }, [dispatch, props.history]);
 
+  localStorage.removeItem("token");
+  localStorage.removeItem("expirationDate");
+  localStorage.removeItem("userId");
+
   return <Redirect to="/" />;
 };
 
