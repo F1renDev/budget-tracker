@@ -8,6 +8,9 @@ import styles from "./Header.module.css";
 const Header = () => {
   const auth = useSelector((state) => state.auth, shallowEqual);
   const data = useSelector((state) => state.monthlyExpCalc, shallowEqual);
+  const income = useSelector(
+    (state) => state.monthlyIncCalc.initialMonthlyInput
+  );
 
   let sendData = data.map((item) => {
     return {
@@ -19,20 +22,22 @@ const Header = () => {
   });
 
   const sendData2 = {
-    [auth.userId]: { expenses: sendData, userId: auth.userId },
+    [auth.userId]: { expenses: sendData, income: income, userId: auth.userId },
   };
 
-  const send = () => {
-    axios
-      .put(
+  const send = async () => {
+    try {
+      const response = await axios.put(
         "https://budget-tracker-app-66952.firebaseio.com/" +
           auth.userId +
           ".json?auth=" +
           auth.token,
         sendData2
-      )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const SignupSaveBtn = !auth.isAuth ? (

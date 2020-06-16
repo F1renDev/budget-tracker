@@ -7,6 +7,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+.Hide {
+  display: none;
+}
+
 .Calculator {
   box-sizing: border-box;
   width: 50%;
@@ -60,6 +64,33 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 1024px) {
+  .Hide {
+    /* background-color: black;
+    width: 100%;
+    display: block;
+    height: 30px;
+    text-align: center;
+    color: white;
+    z-index: 300;
+    position: relative; */
+    display: block;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    z-index: 300;
+    background-color: rgb(42, 217, 194);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    line-height: 1.25;
+    -webkit-appearance: none;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    color: rgb(4, 29, 89);
+    font-size: 17px;
+    margin: 10px 0 20px 0;
+  }
+
   .Calculator {
     width: 100%;
     margin-bottom: 3rem;

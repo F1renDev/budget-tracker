@@ -35,8 +35,6 @@ const Summary = () => {
   //Formatting the output numbers
   const numberFormat = new Intl.NumberFormat("en-IN");
 
-  
-
   return (
     <div className={styles.Summary}>
       <div className={styles.ChartArea}>

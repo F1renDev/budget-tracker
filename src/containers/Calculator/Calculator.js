@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Calculator.module.css";
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
 import axios from "axios";
@@ -22,17 +22,17 @@ const Calculator = () => {
   const fetchedData = [];
 
   useEffect(() => {
-    if (authData.isAuth && !authData.loadedData) {
-      axios
-        .get(
-          "https://budget-tracker-app-66952.firebaseio.com/" +
-            authData.userId +
-            "/" +
-            authData.userId +
-            ".json" +
-            queryParams
-        )
-        .then((response) => {
+    (async () => {
+      try {
+        if (authData.isAuth && !authData.loadedData) {
+          const response = await axios.get(
+            "https://budget-tracker-app-66952.firebaseio.com/" +
+              authData.userId +
+              "/" +
+              authData.userId +
+              ".json" +
+              queryParams
+          );
           for (let key in response.data) {
             fetchedData.push(response.data[key]);
           }
@@ -44,15 +44,21 @@ const Calculator = () => {
             type: actionTypes.HANDLE_LOADED_STATE_CHANGE,
             loadedData: true,
           });
-        })
-        .catch((err) => console.log(err));
-    }
+          dispatch({
+            type: actionTypes.HANDLE_MONTHLY_INPUT_CHANGE,
+            payload: response.data.income,
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+    // eslint-disable-next-line
   }, [
     authData.isAuth,
     authData.loadedData,
     authData.userId,
     dispatch,
-    // fetchedData,
     queryParams,
   ]);
 
@@ -88,6 +94,66 @@ const Calculator = () => {
     );
   });
 
+  const [isHidden, setIsHidden] = useState(true);
+  const isMobileView = document.documentElement.clientWidth < 1024;
+
+  const mobileView = (
+    <>
+      <div className={styles.Hide} onClick={() => setIsHidden(!isHidden)}>
+        <h4>Show/Hide expenses</h4>
+      </div>
+      <div
+        style={{
+          display: isHidden ? "none" : "block",
+        }}
+      >
+        <div>
+          <h3 className={styles.MonthlyHeader}>Monthly Expenses</h3>
+          <ul style={{ listStyle: "none", marginBottom: "2rem" }}>
+            {expensesList}
+          </ul>
+          <div className={styles.AddExpenseBtnContainer}>
+            <button
+              className={styles.AddExpenseBtn}
+              onClick={() => dispatch(addBtnHandler())}
+              disabled={data.length >= 20}
+            >
+              {data.length >= 20
+                ? "Upgrade to Pro version to add more"
+                : "Add Expense"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  const buttonClicked = () => {
+    document.getElementById("#addExpense").scrollIntoView(true);
+    dispatch(addBtnHandler());
+  };
+
+  const desktopView = (
+    <>
+      <h3 className={styles.MonthlyHeader}>Monthly Expenses</h3>
+      <ul style={{ listStyle: "none", marginBottom: "2rem" }}>
+        {expensesList}
+      </ul>
+      <div className={styles.AddExpenseBtnContainer}>
+        <button
+          id="#addExpense"
+          className={styles.AddExpenseBtn}
+          onClick={buttonClicked}
+          disabled={data.length >= 20}
+        >
+          {data.length >= 20
+            ? "Upgrade to Pro version to add more"
+            : "Add Expense"}
+        </button>
+      </div>
+    </>
+  );
+
   return (
     <div className={styles.Calculator}>
       <h3 className={styles.MonthlyHeader}>Monthly Income</h3>
@@ -99,21 +165,7 @@ const Calculator = () => {
           onChange={(event) => dispatch(handleMonthlyInput(event))}
         />
       </div>
-      <h3 className={styles.MonthlyHeader}>Monthly Expenses</h3>
-      <ul style={{ listStyle: "none", marginBottom: "2rem" }}>
-        {expensesList}
-      </ul>
-      <div className={styles.AddExpenseBtnContainer}>
-        <button
-          className={styles.AddExpenseBtn}
-          onClick={() => dispatch(addBtnHandler())}
-          disabled={data.length >= 20}
-        >
-          {data.length >= 20
-            ? "Upgrade to Pro version to add more"
-            : "Add Expense"}
-        </button>
-      </div>
+      {isMobileView ? mobileView : desktopView}
     </div>
   );
 };

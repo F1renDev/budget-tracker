@@ -20,42 +20,40 @@ const Login = (props) => {
   const url =
     "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCO0PyMkszfPGfAyaXCrBuIbnQZs-cu5-w";
 
-  const onSubmit = (data) => {
-    const credentials = {
-      email: data.Email,
-      password: data.Password,
-      returnSecureToken: true,
-    };
-    axios
-      .post(url, credentials)
-      .then((response) => {
-        const expirationDate = new Date(
-          new Date().getTime() + response.data.expiresIn * 1000
-        );
-        localStorage.setItem("token", response.data.idToken);
-        localStorage.setItem("expirationDate", expirationDate);
-        localStorage.setItem("userId", response.data.localId);
-        dispatch({
-          type: actionTypes.HANDLE_USER_LOGIN,
-          idToken: response.data.idToken,
-          userId: response.data.localId,
-        });
-        dispatch({
-          type: actionTypes.HANDLE_ERROR_STATUS_CHANGE,
-          errorMsg: null,
-        });
-        //Logging out after the token is expired
-        setTimeout(() => {
-          dispatch({ type: actionTypes.HANDLE_USER_LOGOUT });
-        }, response.data.expiresIn * 1000);
-        props.history.push("/");
-      })
-      .catch((err) =>
-        dispatch({
-          type: actionTypes.HANDLE_ERROR_STATUS_CHANGE,
-          errorMsg: err.response.data.error.message,
-        })
+  const onSubmit = async (data) => {
+    try {
+      const credentials = {
+        email: data.Email,
+        password: data.Password,
+        returnSecureToken: true,
+      };
+      const response = await axios.post(url, credentials);
+      const expirationDate = new Date(
+        new Date().getTime() + response.data.expiresIn * 1000
       );
+      localStorage.setItem("token", response.data.idToken);
+      localStorage.setItem("expirationDate", expirationDate);
+      localStorage.setItem("userId", response.data.localId);
+      dispatch({
+        type: actionTypes.HANDLE_USER_LOGIN,
+        idToken: response.data.idToken,
+        userId: response.data.localId,
+      });
+      dispatch({
+        type: actionTypes.HANDLE_ERROR_STATUS_CHANGE,
+        errorMsg: null,
+      });
+      //Logging out after the token is expired
+      setTimeout(() => {
+        dispatch({ type: actionTypes.HANDLE_USER_LOGOUT });
+      }, response.data.expiresIn * 1000);
+      props.history.push("/");
+    } catch (err) {
+      dispatch({
+        type: actionTypes.HANDLE_ERROR_STATUS_CHANGE,
+        errorMsg: err.response.data.error.message,
+      });
+    }
   };
 
   return (

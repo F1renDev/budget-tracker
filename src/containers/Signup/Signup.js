@@ -17,25 +17,23 @@ const Signup = (props) => {
   const url =
     "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCO0PyMkszfPGfAyaXCrBuIbnQZs-cu5-w";
 
-  const onSubmit = (data) => {
-    const credentials = {
-      email: data.Email,
-      password: data.Password,
-      returnSecureToken: true,
-    };
-    axios
-      .post(url, credentials)
-      .then((response) => {
-        console.log(response);
-        props.history.push("/login?action=aftersignup");
-      })
-      .catch((err) => {
-        console.log(err.response.data.error.message);
-        dispatch({
-          type: actionTypes.HANDLE_ERROR_STATUS_CHANGE,
-          errorMsg: err.response.data.error.message,
-        });
+  const onSubmit = async (data) => {
+    try {
+      const credentials = {
+        email: data.Email,
+        password: data.Password,
+        returnSecureToken: true,
+      };
+      const response = await axios.post(url, credentials);
+      console.log(response);
+      props.history.push("/login?action=aftersignup");
+    } catch (err) {
+      console.log(err.response.data.error.message);
+      dispatch({
+        type: actionTypes.HANDLE_ERROR_STATUS_CHANGE,
+        errorMsg: err.response.data.error.message,
       });
+    }
   };
 
   return (

@@ -27,9 +27,7 @@ const store = createStore(
 const app = (
   <BrowserRouter>
     <Provider store={store}>
-      {/* <React.StrictMode> */}
-        <App />
-      {/* </React.StrictMode> */}
+      <App />
     </Provider>
   </BrowserRouter>
 );

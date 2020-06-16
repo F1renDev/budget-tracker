@@ -34,7 +34,7 @@ const App = () => {
         }, expirationDate.getTime() - new Date().getTime());
       }
     }
-  }, [auth.isAuth,dispatch]);
+  }, [auth.isAuth, dispatch]);
   return (
     <div className={styles.App}>
       <Header />
