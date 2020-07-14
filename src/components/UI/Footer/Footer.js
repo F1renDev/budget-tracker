@@ -10,7 +10,7 @@ const footer = () => {
         rel="noopener noreferrer"
         href="https://f1rendev.netlify.com/"
       >
-        Coded by Valentine Maltsev
+        Coded by Valentin Maltsev
       </a>
     </div>
   );

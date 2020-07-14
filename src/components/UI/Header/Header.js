@@ -64,7 +64,12 @@ const Header = () => {
   return (
     <div className={styles.Header}>
       <div>
-        <Link to="/">Logo</Link>
+        <Link
+          style={{ color: "white", fontFamily: "Chilanka", fontSize: "1.6em" }}
+          to="/"
+        >
+          BT
+        </Link>
       </div>
       <div className={styles.BtnSection}>
         <div>{SignupSaveBtn}</div>
